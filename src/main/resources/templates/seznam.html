@@ -7,6 +7,15 @@
     <link rel="icon" type="image/png" href="/images/favicon.png">
 </head>
 <body>
-    <h1>Tady bude můj blog…</h1>
+<h1>Přehled</h1>
+<div class="seznam">
+    <div th:each="zaznam : ${post}" class="nahled">
+        <div class="title" th:text="${zaznam.title}">Titulek</div>
+        <div class="perex" th:utext="${zaznam.perex}">Perex</div>
+        <div class="author" th:text="${zaznam.author}">Author</div>
+        <div class="vydani" th:text="${zaznam.published}">Author</div>
+        <a th:href="@{/{slug}(slug=${zaznam.slug})}" href="/detail">Přečíst</a>
+    </div>
+</div>
 </body>
 </html>
