@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="cs" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Můj blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="/images/favicon.png">
+</head>
+<body>
+<h1>Přehled</h1>
+<div class="seznam">
+    <div class ="celyZaznam">
+        <div class="title" th:text="${detail.title}">Titulek</div>
+        <div class="perex" th:utext="${detail.perex}">Perex</div>
+        <div class="author" th:text="${detail.author}">Author</div>
+        <div class="vydani" th:text="${detail.published}">Published</div>
+        <div class="vydani" th:utext="${detail.body}">Body</div>
+        <a href="/">Zpět na přehled</a>
+    </div>
+</div>
+</body>
+</html>

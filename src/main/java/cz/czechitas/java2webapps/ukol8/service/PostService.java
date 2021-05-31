@@ -4,9 +4,11 @@ import cz.czechitas.java2webapps.ukol8.entity.Post;
 import cz.czechitas.java2webapps.ukol8.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,9 +21,10 @@ public class PostService {
         this.postRepository = postRepository;
     }
 
-    //nevím zda může být list a nemusí mít tato metoda ,,podklad,, v repository
-    public List<Post> list(){
-        return postRepository.findAll();
+    public Page<Post> list(Pageable pageable){
+        PageRequest.of(0,20);
+        LocalDate date = LocalDate.now();
+        return postRepository.findPostByPublishedBeforeOrderByPublishedDesc(date,pageable);
     }
 
     public Page<Post> singlePost (String slug, Pageable pageable){

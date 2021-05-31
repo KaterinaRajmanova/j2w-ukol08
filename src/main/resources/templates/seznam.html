@@ -13,8 +13,15 @@
         <div class="title" th:text="${zaznam.title}">Titulek</div>
         <div class="perex" th:utext="${zaznam.perex}">Perex</div>
         <div class="author" th:text="${zaznam.author}">Author</div>
-        <div class="vydani" th:text="${zaznam.published}">Author</div>
-        <a th:href="@{/{slug}(slug=${zaznam.slug})}" href="/detail">Přečíst</a>
+        <div class="vydani" th:text="${zaznam.published}">Published</div>
+        <a th:href="@{/post/{slug}(slug=${zaznam.slug})}"href="/detail">Přečíst</a>
+    </div>
+    <div class="pager">
+        <a th:each="pageNumber : ${#numbers.sequence(0,post.totalPages-1)}"
+           th:href="@{/(size=${post.size}, page=${pageNumber})}"
+           th:text="${pageNumber + 1}"
+           class="page"
+           th:classappend="${pageNumber==post.number} ? 'active'"></a>
     </div>
 </div>
 </body>
